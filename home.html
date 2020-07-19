@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <script>
+            function fn(){
+                document.getElementById("demo").innerHTML="text 2";
+            }
+            function fn2(){
+                document.getElementById("demo").innerHTML='Parrafo';
+            }
+        </script>
+
+        <script src="src/functions.js"></script>
+
+    </head>
+    <body>
+        
+        <h2> Un Titulo</h2>
+
+        <p id="demo">
+            Parrafo
+        </p>
+
+        <button type="button" onclick="fn()">
+            boton
+        </button>
+        <button type="button" onclick="fn2()">
+            boton2
+        </button>
+        <button type="button" onclick="myFn('demo','texto')">
+            boton3
+        </button>
+
+    </body>
+</html>
