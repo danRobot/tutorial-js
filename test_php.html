@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <script>
+            function testS(){
+                var result="<?php hm();?>";
+                //document.getElementById("texto").innerHTML="resultado "+result;
+                alert(result);
+            }
+        </script>
+    </head>
+    <body>
+        <h2>PHP</h2>
+        <p id="texto">
+            texo
+        </p>
+        <form action="" method="POST">
+            <button type="button" onclick="testS()">BOTON</button>
+        </form>
+        
+        <?php 
+            function hm()
+            {
+                echo "Hola mundo";
+            } 
+        ?>
+
+    </body>
+</html>
