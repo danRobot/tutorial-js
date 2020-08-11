@@ -1,16 +1,7 @@
 <?php
 
-class MyClient extends SoapClient{
-    public function __call($function_name, $arguments){
-        $filename="xml-messages/".$function_name.".xml";
-        //print_r($function_name);
-        $result=parent::__call($function_name, $arguments);
-        $file=fopen($filename, "w") or die("Unable to open file!");
-        $xml=parent::__getLastRequest();
-        fwrite($file, $xml);
-        return $result;
-    }
-}
+require("WSSoapClient.php");
+
 
 $url='https://correo-certificado.technokey.co/webService.php?WSDL';
 try{
@@ -22,7 +13,12 @@ try{
 $username='usuario.prueba@gmail.com';
 $password='Sigee0Sigee*';
 
-$m=[ "idUsuario" => $username,
+$OASIS='https://docs.oasis-open.org/wss/v1.1/';
+
+$cliente->setOASIS($OASIS);
+
+$cliente->__setUsernameToken($username,$password,"PasswordDigest");
+$m=[ "idUsuario" => 0,
     "Asunto"=>"Asunto",
     "Texto"=>"Texto",
     "NombreDestinatario"=>"destino",
@@ -31,8 +27,15 @@ $m=[ "idUsuario" => $username,
     "NombreArchivo"=>"",
     "Alertas"=>True,0];
 
+$cliente->saveXML(true);
+$arr=["idUsuario"=>$username];
 $result=$cliente->RegistrarMensaje($m);
 print_r($result);
+//$result=$cliente->ObtenerToken(["idUsuario" => $username,"idMensaje"=>2]);
 
+
+//$result=$cliente->RegistrarMensaje($m);
+print_r($result);
+//print_r(($cliente->__getFunctions()))
 
 ?>
