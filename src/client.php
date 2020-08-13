@@ -3,7 +3,7 @@
 require("WSSoapClient.php");
 
 
-$url='https://correo-certificado.technokey.co/webService.php?WSDL';
+$url='https://test.technokey.co/webService.php?WSDL';
 try{
     $cliente=new MyClient($url, [ "trace" => 1 ] );
 }catch(SoapFault $e){
@@ -13,7 +13,7 @@ try{
 $username='usuario.prueba@gmail.com';
 $password='Sigee0Sigee*';
 
-$OASIS='https://docs.oasis-open.org/wss/v1.1/';
+$OASIS='http://docs.oasis-open.org/wss/2004/01';
 
 $cliente->setOASIS($OASIS);
 
@@ -28,6 +28,7 @@ $m=[ "idUsuario" => 0,
     "Alertas"=>True,0];
 
 $cliente->saveXML(true);
+//$cliente->__setSoapHeaders(Array(new WsseAuthHeader($username,$password)));
 $arr=["idUsuario"=>$username];
 $result=$cliente->RegistrarMensaje($m);
 print_r($result);
